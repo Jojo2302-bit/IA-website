@@ -41,6 +41,7 @@
     flex: 1 1 250px;
     max-width: 300px;
     transition: all 0.5s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
 
   .accordion-item img {
@@ -89,6 +90,21 @@
     transition: all 0.5s ease;
   }
 
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 1200;
+  }
+
+  .accordion-item.expanded .close-btn {
+    opacity: 1;
+  }
+
   footer {
     text-align: center;
     padding: 20px;
@@ -107,19 +123,26 @@
 <header>IA Explore</header>
 
 <div class="accordion">
-  <div class="accordion-item" onclick="toggleItem(this)">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
     <img src="https://setemargens.com/wp-content/uploads/2024/03/Transumanismo.jpg" alt="Introdução IA">
     <div class="accordion-content"><p>A Inteligência Artificial (IA) é a área da ciência da computação que cria sistemas capazes de aprender, pensar e resolver problemas de forma autónoma.</p></div>
   </div>
-  <div class="accordion-item" onclick="toggleItem(this)">
+
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
     <img src="https://fcamara.com/blog/wp-content/uploads/2024/11/tipos-de-inteligencia-artificial-FCamara-1.jpg" alt="Tipos de IA">
     <div class="accordion-content"><p>Machine Learning, Redes Neuronais, Processamento de Linguagem Natural e Visão Computacional são alguns tipos de IA.</p></div>
   </div>
-  <div class="accordion-item" onclick="toggleItem(this)">
+
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
     <img src="https://media.meer.com/attachments/25d8a935d301f7d41f79b8d9d7b0ee5966ad1b28/store/fill/1090/613/56962ce3591479637d1951303dfa30ee2c006c04eabc94ce210056705240/Robo-resolve-problemas-matematicos-A-capacidade-da-IA-de-analisar-grandes-volumes-de-dados-e.jpg" alt="Exemplos IA">
     <div class="accordion-content"><p>Assistentes virtuais, carros autónomos, reconhecimento de imagens, tradução automática e sistemas de recomendação são exemplos de IA aplicada.</p></div>
   </div>
-  <div class="accordion-item" onclick="toggleItem(this)">
+
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
     <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Projetos IA">
     <div class="accordion-content"><p>Explora projetos de IA e aprende a criar os teus próprios modelos. Em breve teremos tutoriais completos!</p></div>
   </div>
@@ -134,16 +157,23 @@
     const isExpanded = item.classList.contains('expanded');
 
     if(isExpanded){
-      // Fechar
-      item.classList.remove('expanded');
-      item.querySelector('.accordion-content').classList.remove('show');
-      items.forEach(i => i.classList.remove('hidden'));
+      closeItem(null, item);
     } else {
-      // Abrir
       items.forEach(i => { if(i !== item) i.classList.add('hidden'); });
       item.classList.add('expanded');
       item.querySelector('.accordion-content').classList.add('show');
+      document.body.style.overflow = "hidden";
+      document.body.style.background = "linear-gradient(135deg, #b8c6ff, #e3b1ff)";
     }
+  }
+
+  function closeItem(event, item){
+    if(event) event.stopPropagation();
+    item.classList.remove('expanded');
+    item.querySelector('.accordion-content').classList.remove('show');
+    items.forEach(i => i.classList.remove('hidden'));
+    document.body.style.overflow = "auto";
+    document.body.style.background = "linear-gradient(135deg, #D0E7FF, #E0D7FF)";
   }
 </script>
 
