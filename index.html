@@ -42,15 +42,18 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             cursor: pointer;
             position: relative;
+            transition: transform 0.3s;
         }
         .accordion-item img {
             width: 100%;
             display: block;
-            transition: transform 0.3s;
+            transition: transform 0.4s ease, max-height 0.4s ease;
             border-radius: 10px;
+            max-height: 200px;
+            object-fit: cover;
         }
-        .accordion-item img:hover {
-            transform: scale(1.05);
+        .accordion-item.expanded img {
+            max-height: 400px; /* imagem aumenta ao expandir */
         }
         .accordion-content {
             max-height: 0;
@@ -148,14 +151,20 @@
     const items = document.querySelectorAll('.accordion-item');
 
     function toggleAccordion(index){
-        items.forEach((item, i) => {
-            const content = item.querySelector('.accordion-content');
+        const item = items[index];
+        const content = item.querySelector('.accordion-content');
+
+        // Fecha os outros itens
+        items.forEach((otherItem, i) => {
             if(i !== index){
-                content.classList.remove('open');
+                otherItem.querySelector('.accordion-content').classList.remove('open');
+                otherItem.classList.remove('expanded');
             }
         });
-        const content = items[index].querySelector('.accordion-content');
+
+        // Alterna o item clicado
         content.classList.toggle('open');
+        item.classList.toggle('expanded');
     }
 </script>
 
