@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inteligência Artificial</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #9333ea ;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background: linear-gradient(135deg, #D0E7FF, #E0D7FF);
+        }
+
         header {
             position: fixed;
             top: 0;
@@ -25,40 +36,65 @@
             text-decoration: none;
             margin-left: 20px;
             font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        header nav a:hover { color: #4a90e2; }
-
-        section {
-            min-height: 100vh;
-            padding: 100px 50px 50px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+        header nav a:hover {
+            color: #FFF;
         }
 
-        .hero {
-            background: url('https://cdn.pixabay.com/photo/2017/08/06/11/40/artificial-intelligence-2598294_1280.jpg') no-repeat center center/cover;
-            color: white;
+        .accordion {
+            width: 90%;
+            max-width: 900px;
+            margin: 120px auto 50px auto; /* top margin para não ficar atrás do header */
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
         }
 
-        .hero p {
+        .accordion-header {
+            padding: 20px;
             font-size: 1.5rem;
-            margin-bottom: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(135deg, #4A90E2, #9333EA);
+            color: white;
+            transition: 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #357AB7, #7A1ED9);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 20px;
+            background: #f7f7ff;
+        }
+
+        .accordion-content.open {
+            padding: 20px;
+            max-height: 1000px; /* valor grande suficiente para o conteúdo */
+        }
+
+        .accordion-content img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
         }
 
         .btn {
-            padding: 15px 30px;
-            background: #4a90e2;
-            color: #FFADAD;
+            padding: 10px 25px;
+            background: #9333EA;
+            color: white;
             border: none;
             border-radius: 50px;
             cursor: pointer;
@@ -66,18 +102,8 @@
             transition: 0.3s;
         }
 
-        .btn:hover { background: #357ab7; }
-
-        .content img {
-            max-width: 100%;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #4a90e2;
+        .btn:hover {
+            background: #7A1ED9;
         }
 
         footer {
@@ -85,13 +111,19 @@
             color: white;
             padding: 20px;
             text-align: center;
+            margin-top: 50px;
         }
 
-        @media(max-width: 768px) {
-            header { flex-direction: column; }
-            header nav { margin-top: 10px; }
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1.2rem; }
+        @media(max-width:768px){
+            header {
+                flex-direction: column;
+            }
+            header nav {
+                margin-top: 10px;
+            }
+            .accordion-header {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -100,59 +132,79 @@
 <header>
     <div class="logo">IA Explore</div>
     <nav>
-        <a href="#intro">Introdução</a>
-        <a href="#tipos">Tipos</a>
-        <a href="#exemplos">Exemplos</a>
-        <a href="#projetos">Projetos</a>
+        <a onclick="toggleAccordion(0)">Introdução</a>
+        <a onclick="toggleAccordion(1)">Tipos de IA</a>
+        <a onclick="toggleAccordion(2)">Exemplos</a>
+        <a onclick="toggleAccordion(3)">Projetos</a>
     </nav>
 </header>
 
-<section class="hero">
-    <h1>Descobre a Inteligência Artificial</h1>
-    <p>Aprende de forma visual e interativa</p>
-    <button class="btn" onclick="document.getElementById('intro').scrollIntoView({behavior:'smooth'});">Começar</button>
-</section>
-
-<section id="intro">
-    <h2 class="section-title">O que é Inteligência Artificial?</h2>
-    <p>A Inteligência Artificial (IA) é a área da ciência da computação que cria sistemas capazes de aprender, pensar e resolver problemas de forma autónoma.</p>
-    <img src="https://cdn.pixabay.com/photo/2016/11/29/04/17/brain-1867661_1280.jpg" alt="IA cérebro">
-</section>
-
-<section id="tipos">
-    <h2 class="section-title">Tipos de IA</h2>
-    <ul style="list-style: none; text-align: left; max-width: 700px; margin: auto;">
-        <li><strong>Machine Learning:</strong> aprendizagem automática a partir de dados.</li>
-        <li><strong>Redes Neuronais:</strong> modelos inspirados no cérebro humano.</li>
-        <li><strong>Processamento de Linguagem Natural (NLP):</strong> compreensão de textos e voz.</li>
-        <li><strong>Visão Computacional:</strong> análise e interpretação de imagens.</li>
-    </ul>
-    <img src="https://cdn.pixabay.com/photo/2017/01/31/17/44/artificial-intelligence-2025796_1280.jpg" alt="Tipos de IA">
-</section>
-
-<section id="exemplos">
-    <h2 class="section-title">Exemplos Práticos</h2>
-    <p>IA aplicada no dia-a-dia:</p>
-    <ul style="list-style: none; text-align: left; max-width: 700px; margin: auto;">
-        <li>Assistentes virtuais (Siri, Alexa)</li>
-        <li>Carros autónomos</li>
-        <li>Reconhecimento de imagens e faces</li>
-        <li>Tradução automática</li>
-        <li>Sistemas de recomendação (Netflix, Spotify)</li>
-    </ul>
-    <img src="https://cdn.pixabay.com/photo/2015/01/08/18/30/startup-593341_1280.jpg" alt="Exemplos de IA">
-</section>
-
-<section id="projetos">
-    <h2 class="section-title">Projetos e Tutoriais</h2>
-    <p>Explora projetos de IA e aprende a criar os teus próprios modelos.</p>
-    <img src="https://cdn.pixabay.com/photo/2017/09/20/21/00/artificial-intelligence-2774875_1280.jpg" alt="Projetos IA">
-    <button class="btn" onclick="alert('Em breve, adicionaremos tutoriais!')">Ver Tutoriais</button>
-</section>
+<div class="accordion">
+    <div class="accordion-item">
+        <div class="accordion-header">Introdução</div>
+        <div class="accordion-content">
+            <p>A Inteligência Artificial (IA) é a área da ciência da computação que cria sistemas capazes de aprender, pensar e resolver problemas de forma autónoma.</p>
+            <img src="https://cdn.pixabay.com/photo/2016/11/29/04/17/brain-1867661_1280.jpg" alt="IA cérebro">
+        </div>
+    </div>
+    <div class="accordion-item">
+        <div class="accordion-header">Tipos de IA</div>
+        <div class="accordion-content">
+            <ul style="list-style:none; text-align:left; max-width:700px; margin:auto;">
+                <li><strong>Machine Learning:</strong> aprendizagem automática a partir de dados.</li>
+                <li><strong>Redes Neuronais:</strong> modelos inspirados no cérebro humano.</li>
+                <li><strong>Processamento de Linguagem Natural (NLP):</strong> compreensão de textos e voz.</li>
+                <li><strong>Visão Computacional:</strong> análise e interpretação de imagens.</li>
+            </ul>
+            <img src="https://cdn.pixabay.com/photo/2017/01/31/17/44/artificial-intelligence-2025796_1280.jpg" alt="Tipos de IA">
+        </div>
+    </div>
+    <div class="accordion-item">
+        <div class="accordion-header">Exemplos</div>
+        <div class="accordion-content">
+            <p>IA aplicada no dia-a-dia:</p>
+            <ul style="list-style:none; text-align:left; max-width:700px; margin:auto;">
+                <li>Assistentes virtuais (Siri, Alexa)</li>
+                <li>Carros autónomos</li>
+                <li>Reconhecimento de imagens e faces</li>
+                <li>Tradução automática</li>
+                <li>Sistemas de recomendação (Netflix, Spotify)</li>
+            </ul>
+            <img src="https://cdn.pixabay.com/photo/2015/01/08/18/30/startup-593341_1280.jpg" alt="Exemplos de IA">
+        </div>
+    </div>
+    <div class="accordion-item">
+        <div class="accordion-header">Projetos</div>
+        <div class="accordion-content">
+            <p>Explora projetos de IA e aprende a criar os teus próprios modelos.</p>
+            <img src="https://cdn.pixabay.com/photo/2017/09/20/21/00/artificial-intelligence-2774875_1280.jpg" alt="Projetos IA">
+            <button class="btn" onclick="alert('Em breve, adicionaremos tutoriais!')">Ver Tutoriais</button>
+        </div>
+    </div>
+</div>
 
 <footer>
     © 2025 — IA Explore
 </footer>
+
+<script>
+    const contents = document.querySelectorAll('.accordion-content');
+    function toggleAccordion(index){
+        // fecha todas as seções abertas
+        contents.forEach((c, i) => {
+            if(i !== index){
+                c.classList.remove('open');
+            }
+        });
+        // alterna a seção clicada
+        contents[index].classList.toggle('open');
+    }
+
+    // adicionar toggle clicando no header também
+    document.querySelectorAll('.accordion-header').forEach((header, index) => {
+        header.addEventListener('click', () => toggleAccordion(index));
+    });
+</script>
 
 </body>
 </html>
