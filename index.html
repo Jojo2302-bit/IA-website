@@ -1,171 +1,163 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inteligência Artificial</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #222;
-            background: linear-gradient(135deg, #D0E7FF, #E0D7FF);
-        }
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #4A90E2, #9333EA);
-            color: #CBA0FF;
-            padding: 15px 30px;
-            z-index: 1000;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .accordion {
-            width: 90%;
-            max-width: 900px;
-            margin: 120px auto 50px auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        .accordion-item {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            cursor: pointer;
-            position: relative;
-            transition: transform 0.3s;
-        }
-        .accordion-item img {
-            width: 100%;
-            display: block;
-            transition: transform 0.4s ease, max-height 0.4s ease;
-            border-radius: 10px;
-            max-height: 200px;
-            object-fit: cover;
-        }
-        .accordion-item.expanded img {
-            max-height: 400px; /* imagem aumenta ao expandir */
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-            background: #f7f7ff;
-            padding: 0 20px;
-        }
-        .accordion-content.open {
-            padding: 20px;
-            max-height: 1000px;
-        }
-        .accordion-content img {
-            width: 100%;
-            border-radius: 10px;
-            margin: 15px 0;
-        }
-        .btn {
-            padding: 10px 25px;
-            background: #9333EA;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background: #7A1ED9;
-        }
-        footer {
-            background: #222;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            margin-top: 50px;
-        }
-        @media(max-width:768px){
-            .accordion {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA Explore - Fullscreen Accordion</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #D0E7FF, #E0D7FF);
+    overflow-x: hidden;
+    transition: background 0.5s;
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #4A90E2, #9333EA);
+    color: #CBA0FF;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.5rem;
+    z-index: 1000;
+  }
+
+  .accordion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 100px auto 50px;
+    max-width: 1200px;
+    transition: opacity 0.5s;
+  }
+
+  .accordion-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 15px;
+    flex: 1 1 250px;
+    max-width: 300px;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+
+  .accordion-item img {
+    width: 100%;
+    display: block;
+    border-radius: 15px;
+    transition: transform 0.5s;
+  }
+
+  .accordion-item.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 999;
+    max-width: 90%;
+    width: auto;
+    height: auto;
+  }
+
+  .accordion-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    border-radius: 0 0 15px 15px;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .accordion-content.show {
+    max-height: 80vh;
+    padding: 20px;
+    opacity: 1;
+  }
+
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+  }
+
+  /* efeito tipo "digitando" */
+  .typing {
+    border-right: .15em solid #333;
+    white-space: pre-wrap;
+    overflow: hidden;
+    animation: typing 1s steps(40, end), blink 0.75s step-end infinite;
+  }
+
+  @keyframes typing { from { width: 0 } to { width: 100% } }
+  @keyframes blink { 50% { border-color: transparent } }
+
+  @media(max-width:768px){
+    .accordion { flex-direction: column; align-items: center; }
+    .accordion-item { max-width: 90%; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-    IA Explore
-</header>
+<header>IA Explore</header>
 
 <div class="accordion">
-    <div class="accordion-item" onclick="toggleAccordion(0)">
-        <img src="https://setemargens.com/wp-content/uploads/2024/03/Transumanismo.jpg" alt="Introdução IA">
-        <div class="accordion-content">
-            <p>A Inteligência Artificial (IA) é a área da ciência da computação que cria sistemas capazes de aprender, pensar e resolver problemas de forma autónoma.</p>
-        </div>
-    </div>
-    <div class="accordion-item" onclick="toggleAccordion(1)">
-        <img src="https://fcamara.com/blog/wp-content/uploads/2024/11/tipos-de-inteligencia-artificial-FCamara-1.jpg" alt="Tipos de IA">
-        <div class="accordion-content">
-            <ul>
-                <li><strong>Machine Learning:</strong> aprendizagem automática a partir de dados.</li>
-                <li><strong>Redes Neuronais:</strong> modelos inspirados no cérebro humano.</li>
-                <li><strong>Processamento de Linguagem Natural (NLP):</strong> compreensão de textos e voz.</li>
-                <li><strong>Visão Computacional:</strong> análise e interpretação de imagens.</li>
-            </ul>
-        </div>
-    </div>
-    <div class="accordion-item" onclick="toggleAccordion(2)">
-        <img src="https://media.meer.com/attachments/25d8a935d301f7d41f79b8d9d7b0ee5966ad1b28/store/fill/1090/613/56962ce3591479637d1951303dfa30ee2c006c04eabc94ce210056705240/Robo-resolve-problemas-matematicos-A-capacidade-da-IA-de-analisar-grandes-volumes-de-dados-e.jpg" alt="Exemplos IA">
-        <div class="accordion-content">
-            <ul>
-                <li>Assistentes virtuais (Siri, Alexa)</li>
-                <li>Carros autónomos</li>
-                <li>Reconhecimento de imagens e faces</li>
-                <li>Tradução automática</li>
-                <li>Sistemas de recomendação (Netflix, Spotify)</li>
-            </ul>
-        </div>
-    </div>
-    <div class="accordion-item" onclick="toggleAccordion(3)">
-        <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Projetos IA">
-        <div class="accordion-content">
-            <p>Explora projetos de IA e aprende a criar os teus próprios modelos.</p>
-            <button class="btn" onclick="alert('Em breve, adicionaremos tutoriais!')">Ver Tutoriais</button>
-        </div>
-    </div>
+  <div class="accordion-item" onclick="toggleItem(this)">
+    <img src="https://setemargens.com/wp-content/uploads/2024/03/Transumanismo.jpg" alt="Introdução IA">
+    <div class="accordion-content"><p class="typing">A Inteligência Artificial (IA) é a área da ciência da computação que cria sistemas capazes de aprender, pensar e resolver problemas de forma autónoma.</p></div>
+  </div>
+  <div class="accordion-item" onclick="toggleItem(this)">
+    <img src="https://fcamara.com/blog/wp-content/uploads/2024/11/tipos-de-inteligencia-artificial-FCamara-1.jpg" alt="Tipos de IA">
+    <div class="accordion-content"><p class="typing">Machine Learning, Redes Neuronais, Processamento de Linguagem Natural e Visão Computacional são alguns tipos de IA.</p></div>
+  </div>
+  <div class="accordion-item" onclick="toggleItem(this)">
+    <img src="https://media.meer.com/attachments/25d8a935d301f7d41f79b8d9d7b0ee5966ad1b28/store/fill/1090/613/56962ce3591479637d1951303dfa30ee2c006c04eabc94ce210056705240/Robo-resolve-problemas-matematicos-A-capacidade-da-IA-de-analisar-grandes-volumes-de-dados-e.jpg" alt="Exemplos IA">
+    <div class="accordion-content"><p class="typing">Assistentes virtuais, carros autónomos, reconhecimento de imagens, tradução automática e sistemas de recomendação são exemplos de IA aplicada.</p></div>
+  </div>
+  <div class="accordion-item" onclick="toggleItem(this)">
+    <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Projetos IA">
+    <div class="accordion-content"><p class="typing">Explora projetos de IA e aprende a criar os teus próprios modelos. Em breve teremos tutoriais completos!</p></div>
+  </div>
 </div>
 
-<footer>
-    © 2025 — IA Explore
-</footer>
+<footer>© 2025 — IA Explore</footer>
 
 <script>
-    const items = document.querySelectorAll('.accordion-item');
+  const items = document.querySelectorAll('.accordion-item');
 
-    function toggleAccordion(index){
-        const item = items[index];
-        const content = item.querySelector('.accordion-content');
+  function toggleItem(item){
+    const isExpanded = item.classList.contains('expanded');
 
-        // Fecha os outros itens
-        items.forEach((otherItem, i) => {
-            if(i !== index){
-                otherItem.querySelector('.accordion-content').classList.remove('open');
-                otherItem.classList.remove('expanded');
-            }
-        });
-
-        // Alterna o item clicado
-        content.classList.toggle('open');
-        item.classList.toggle('expanded');
+    if(isExpanded){
+      // Fechar
+      item.classList.remove('expanded');
+      item.querySelector('.accordion-content').classList.remove('show');
+      items.forEach(i => i.classList.remove('hidden'));
+    } else {
+      // Abrir
+      items.forEach(i => {
+        if(i !== item) i.classList.add('hidden');
+      });
+      item.classList.add('expanded');
+      item.querySelector('.accordion-content').classList.add('show');
     }
+  }
 </script>
 
 </body>
