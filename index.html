@@ -4,110 +4,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IA Explore - Dark Mode</title>
-<link rel="stylesheet" href="style.css">
 <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #1c1c1c;
-  color: #c0c0c0;
-  margin: 0;
-  padding: 0;
+  background: #0f0f0f;
+  color: #c084fc;
+  overflow-x: hidden;
+  transition: background 0.5s;
 }
 header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, #1b1b1b, #5a1ea8);
+  color: #e6ccff;
+  padding: 15px;
   text-align: center;
-  padding: 20px;
-  font-size: 2rem;
-  background-color: #2a2a2a;
-  color: #f0f0f0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  font-size: 1.6rem;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
 }
 .accordion {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 40px;
+  gap: 30px;
+  margin: 120px auto 40px;
+  max-width: 1800px;
 }
 .accordion-item {
   position: relative;
-  width: 300px;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 15px;
+  flex: 1 1 350px;
+  max-width: 420px;
+  transition: all 0.5s ease;
+  background: #1b1b1b;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.8);
 }
 .accordion-item img {
-  width: 100%;
+  width: 110%;
+  height: auto;
   display: block;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
+  border-radius: 15px;
+  transition: transform 0.5s ease;
+}
+.accordion-item.expanded {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(1.15);
+  max-width: 90%;
+  z-index: 2000;
 }
 .accordion-content {
-  display: none;
-  background-color: #2a2a2a;
-  color: #e0e0e0;
-  padding: 15px;
-  margin-top: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  background: rgba(20,20,20,0.95);
+  color: #e0c8ff;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.5s ease;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  border-radius: 0 0 15px 15px;
 }
-.accordion-content h2 {
-  margin-bottom: 10px;
+.accordion-content.show {
+  max-height: 85vh;
+  padding: 25px;
+  opacity: 1;
+  transform: translateY(0);
 }
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: all 0.4s ease;
+}
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 2.3rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 3000;
+  color: #fff;
+  text-shadow: 0 0 10px #a455ff;
+}
+.accordion-item.expanded .close-btn { opacity: 1; }
 footer {
   text-align: center;
-  padding: 15px;
-  background-color: #2a2a2a;
-  color: #f0f0f0;
+  padding: 20px;
+  background: #111;
+  color: #caa7ff;
   margin-top: 40px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.7);
+}
+@media(max-width:768px){
+  .accordion { flex-direction: column; align-items: center; }
+  .accordion-item { max-width: 95%; }
 }
 </style>
 </head>
 <body>
 <header>IA Explore</header>
 <div class="accordion">
-  <div class="accordion-item">
-    <img src="assets/introducao.jpg" alt="O que é a IA">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="https://setemargens.com/wp-content/uploads/2024/03/Transumanismo.jpg" alt="Introdução IA">
     <div class="accordion-content">
       <h2>O que é a inteligência artificial?</h2>
-      <p>Capacidade de uma máquina para reproduzir competências semelhantes às humanas, como o raciocínio, a aprendizagem, o planeamento e a criatividade. A IA permite que sistemas técnicos percebam o ambiente, interpretem a informação e resolvam problemas com o objetivo de atingir metas específicas. O computador recebe dados (preparados ou recolhidos por sensores), processa-os e responde de forma autónoma.</p>
+      <p>Capacidade de uma máquina para reproduzir competências semelhantes às humanas, como raciocínio, aprendizagem, planeamento e criatividade. A IA permite que sistemas percebam o ambiente, processem informações e resolvam problemas autonomamente.</p>
     </div>
   </div>
 
-  <div class="accordion-item">
-    <img src="assets/tipos-ia.jpg" alt="Saúde">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="https://fcamara.com/blog/wp-content/uploads/2024/11/tipos-de-inteligencia-artificial-FCamara-1.jpg" alt="Saúde">
     <div class="accordion-content">
       <h2>Saúde</h2>
-      <p>Os investigadores estão a explorar como usar IA para analisar grandes quantidades de dados de saúde e identificar padrões que possam conduzir a novas descobertas médicas e a melhorias no diagnóstico individual. Um exemplo é o KConnect, um projeto cofinanciado pela UE que desenvolve serviços de pesquisa e processamento de texto multilingue para ajudar pessoas a encontrar informações médicas relevantes e fiáveis.</p>
+      <p>IA ajuda a analisar grandes quantidades de dados de saúde e encontrar padrões para novas descobertas médicas e melhorias de diagnóstico. Ex.: KConnect, projeto UE que auxilia na pesquisa multilingue de informação médica.</p>
     </div>
   </div>
 
-  <div class="accordion-item">
-    <img src="assets/machine-learning.jpg" alt="Carros">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="https://media.meer.com/attachments/25d8a935d301f7d41f79b8d9d7b0ee5966ad1b28/store/fill/1090/613/56962ce3591479637d1951303dfa30ee2c006c04eabc94ce210056705240/Robo-resolve-problemas-matematicos.jpg" alt="Carros">
     <div class="accordion-content">
       <h2>Carros</h2>
-      <p>Enquanto os veículos autónomos ainda não são uma realidade, os carros já utilizam funções de segurança alimentadas por IA. A UE ajudou a financiar o VI-DAS, um projeto com sensores automatizados que detetam situações perigosas potenciais e acidentes. A navegação é em grande parte suportada por IA.</p>
+      <p>Veículos usam funções de segurança alimentadas por IA. Ex.: VI-DAS, projeto UE com sensores automatizados que detetam acidentes potenciais. Navegação é parcialmente alimentada por IA.</p>
     </div>
   </div>
 
-  <div class="accordion-item">
-    <img src="assets/exemplos.jpg" alt="Alimentação e Agricultura">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Alimentação e Agricultura">
     <div class="accordion-content">
       <h2>Alimentação e Agricultura</h2>
-      <p>A Inteligência Artificial pode ser utilizada na criação de um sistema alimentar sustentável na UE, garantindo alimentos mais saudáveis, minimizando fertilizantes, pesticidas e irrigação, contribuindo para a produtividade e redução do impacto ambiental. Robôs podem, por exemplo, remover ervas daninhas, diminuindo o uso de herbicidas.</p>
+      <p>IA ajuda a criar sistemas alimentares sustentáveis, garantindo alimentos saudáveis, minimizando fertilizantes e pesticidas, aumentando produtividade e reduzindo impacto ambiental.</p>
     </div>
   </div>
 
-  <div class="accordion-item">
-    <img src="assets/ia-saude.jpg" alt="Administração Pública e Serviços">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Administração Pública e Serviços">
     <div class="accordion-content">
       <h2>Administração Pública e Serviços</h2>
-      <p>Ao utilizar uma vasta gama de dados e reconhecimento de padrões, a IA poderá alertar antecipadamente para catástrofes naturais e permitir uma preparação e atenuação eficientes das consequências.</p>
+      <p>IA utiliza grandes volumes de dados para alertar antecipadamente sobre catástrofes e ajudar na preparação e mitigação das consequências.</p>
     </div>
   </div>
 
-  <div class="accordion-item">
-    <img src="assets/projeto.jpg" alt="Projetos de IA">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Projetos de IA">
     <div class="accordion-content">
       <h2>Projetos de IA</h2>
-      <p>Aqui estão alguns exemplos de projetos interessantes de IA:</p>
+      <p>Exemplos de projetos de IA:</p>
       <ul>
         <li><a href="https://tek.sapo.pt/multimedia/artigos/iron-e-mesmo-um-robot-humanoide-ou-um-humano-disfarcado-xpeng-tira-a-limpo-as-duvidas" target="_blank">Iron - Robot Humanoide</a></li>
         <li><a href="https://tek.sapo.pt/multimedia/artigos/xpeng-divulga-esqueleto-completo-do-iron-para-acabar-de-vez-com-as-duvidas-sobre-o-seu-robot" target="_blank">Esqueleto Completo do Iron</a></li>
@@ -118,16 +174,26 @@ footer {
 <footer>© 2025 — IA Explore</footer>
 <script>
 const items = document.querySelectorAll('.accordion-item');
-items.forEach(item => {
-  item.addEventListener('click', () => {
-    const content = item.querySelector('.accordion-content');
-    if(content.style.display === 'block') {
-      content.style.display = 'none';
-    } else {
-      content.style.display = 'block';
-    }
-  });
-});
+function toggleItem(item){
+  const isExpanded = item.classList.contains('expanded');
+  if(isExpanded){
+    closeItem(null, item);
+  } else {
+    items.forEach(i => { if(i !== item) i.classList.add('hidden'); });
+    item.classList.add('expanded');
+    item.querySelector('.accordion-content').classList.add('show');
+    document.body.style.overflow = "hidden";
+    document.body.style.background = "linear-gradient(135deg, #0c0c0c, #3a1366)";
+  }
+}
+function closeItem(event, item){
+  if(event) event.stopPropagation();
+  item.classList.remove('expanded');
+  item.querySelector('.accordion-content').classList.remove('show');
+  items.forEach(i => i.classList.remove('hidden'));
+  document.body.style.overflow = "auto";
+  document.body.style.background = "linear-gradient(135deg, #111, #2a1540)";
+}
 </script>
 </body>
 </html>
