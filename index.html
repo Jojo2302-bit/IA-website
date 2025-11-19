@@ -5,80 +5,129 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IA Explore - Dark Mode</title>
 <link rel="stylesheet" href="style.css">
+<style>
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1c1c1c;
+  color: #c0c0c0;
+  margin: 0;
+  padding: 0;
+}
+header {
+  text-align: center;
+  padding: 20px;
+  font-size: 2rem;
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+.accordion {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+}
+.accordion-item {
+  position: relative;
+  width: 300px;
+  cursor: pointer;
+}
+.accordion-item img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+.accordion-content {
+  display: none;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+.accordion-content h2 {
+  margin-bottom: 10px;
+}
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  margin-top: 40px;
+}
+</style>
 </head>
 <body>
 <header>IA Explore</header>
 <div class="accordion">
-  <!-- 1: Introdução à IA -->
-  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
-    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="assets/introducao.jpg" alt="Introdução à IA">
-    <div class="accordion-content"><h2>O que é a inteligência artificial?</h2><p>Capacidade de uma máquina para reproduzir competências semelhantes às humanas, como o raciocínio, a aprendizagem, o planeamento e a criatividade. A IA permite que sistemas técnicos percebam o ambiente, interpretem a informação e resolvam problemas com o objetivo de atingir determinadas metas. O computador recebe dados (preparados ou recolhidos por sensores), processa-os e responde de forma autónoma.</p></div>
+  <div class="accordion-item">
+    <img src="assets/introducao.jpg" alt="O que é a IA">
+    <div class="accordion-content">
+      <h2>O que é a inteligência artificial?</h2>
+      <p>Capacidade de uma máquina para reproduzir competências semelhantes às humanas, como o raciocínio, a aprendizagem, o planeamento e a criatividade. A IA permite que sistemas técnicos percebam o ambiente, interpretem a informação e resolvam problemas com o objetivo de atingir metas específicas. O computador recebe dados (preparados ou recolhidos por sensores), processa-os e responde de forma autónoma.</p>
+    </div>
   </div>
 
-  <!-- 2: Tipos de IA -->
-  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
-    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="assets/tipos-ia.jpg" alt="Tipos de IA">
-    <div class="accordion-content"><h2>Saúde</h2><p>Os investigadores estão a explorar como usar IA para analisar grandes quantidades de dados de saúde e identificar padrões que possam conduzir a novas descobertas médicas e a melhorias no diagnóstico individual. Um exemplo é o KConnect, um projeto cofinanciado pela UE que desenvolve serviços de pesquisa e processamento de texto multilingue para ajudar pessoas a encontrar informações médicas relevantes e fiáveis.</p></div>
+  <div class="accordion-item">
+    <img src="assets/tipos-ia.jpg" alt="Saúde">
+    <div class="accordion-content">
+      <h2>Saúde</h2>
+      <p>Os investigadores estão a explorar como usar IA para analisar grandes quantidades de dados de saúde e identificar padrões que possam conduzir a novas descobertas médicas e a melhorias no diagnóstico individual. Um exemplo é o KConnect, um projeto cofinanciado pela UE que desenvolve serviços de pesquisa e processamento de texto multilingue para ajudar pessoas a encontrar informações médicas relevantes e fiáveis.</p>
+    </div>
   </div>
 
-  <!-- 3: Machine Learning -->
-  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
-    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="assets/machine-learning.jpg" alt="Machine Learning">
-    <div class="accordion-content"><h2>Carros</h2><p>Enquanto os veículos autónomos ainda não são uma realidade, os carros já utilizam funções de segurança alimentadas por IA. A UE ajudou, por exemplo, a financiar o VI-DAS, um projeto com sensores automatizados que detetam situações perigosas potenciais e acidentes. A navegação é em grande parte suportada por IA.</p></div>
+  <div class="accordion-item">
+    <img src="assets/machine-learning.jpg" alt="Carros">
+    <div class="accordion-content">
+      <h2>Carros</h2>
+      <p>Enquanto os veículos autónomos ainda não são uma realidade, os carros já utilizam funções de segurança alimentadas por IA. A UE ajudou a financiar o VI-DAS, um projeto com sensores automatizados que detetam situações perigosas potenciais e acidentes. A navegação é em grande parte suportada por IA.</p>
+    </div>
   </div>
 
-  <!-- 4: Exemplos de IA no dia a dia -->
-  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
-    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="assets/exemplos.jpg" alt="Exemplos no dia a dia">
-    <div class="accordion-content"><h2>Alimentação e Agricultura</h2><p>A Inteligência Artificial pode ser utilizada na criação de um sistema alimentar sustentável na UE, permitindo garantir alimentos mais saudáveis e minimizando a utilização de fertilizantes, pesticidas e irrigação. Além disso, contribui para a produtividade e a redução do impacto ambiental. Robôs podem, por exemplo, remover ervas daninhas, diminuindo o uso de herbicidas.</p></div>
+  <div class="accordion-item">
+    <img src="assets/exemplos.jpg" alt="Alimentação e Agricultura">
+    <div class="accordion-content">
+      <h2>Alimentação e Agricultura</h2>
+      <p>A Inteligência Artificial pode ser utilizada na criação de um sistema alimentar sustentável na UE, garantindo alimentos mais saudáveis, minimizando fertilizantes, pesticidas e irrigação, contribuindo para a produtividade e redução do impacto ambiental. Robôs podem, por exemplo, remover ervas daninhas, diminuindo o uso de herbicidas.</p>
+    </div>
   </div>
 
-  <!-- 5: IA na Saúde -->
-  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
-    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="assets/ia-saude.jpg" alt="IA na Saúde">
-    <div class="accordion-content"><h2>Administração Pública e Serviços</h2><p>Ao utilizar uma vasta gama de dados e de reconhecimento de padrões, a IA poderá alertar antecipadamente para catástrofes naturais e permitir uma preparação e atenuação eficientes das consequências.</p></div>
+  <div class="accordion-item">
+    <img src="assets/ia-saude.jpg" alt="Administração Pública e Serviços">
+    <div class="accordion-content">
+      <h2>Administração Pública e Serviços</h2>
+      <p>Ao utilizar uma vasta gama de dados e reconhecimento de padrões, a IA poderá alertar antecipadamente para catástrofes naturais e permitir uma preparação e atenuação eficientes das consequências.</p>
+    </div>
   </div>
 
-  <!-- 6: IA na Educação -->
-  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
-    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="assets/ia-educacao.jpg" alt="IA na Educação">
-    <div class="accordion-content"><p>Estudámos ferramentas que personalizam o ensino, corrigem automaticamente exercícios e apoiam professores.</p></div>
-  </div>
-
-  
-    <img src="assets/projeto.jpg" alt="O nosso projeto">
-    <div class="accordion-content"><h2>Projetos de IA</h2><p>Aqui estão alguns exemplos de projetos interessantes de IA:</p><ul><li><a href="https://tek.sapo.pt/multimedia/artigos/iron-e-mesmo-um-robot-humanoide-ou-um-humano-disfarcado-xpeng-tira-a-limpo-as-duvidas" target="_blank">Iron - Robot Humanoide</a></li><li><a href="https://tek.sapo.pt/multimedia/artigos/xpeng-divulga-esqueleto-completo-do-iron-para-acabar-de-vez-com-as-duvidas-sobre-o-seu-robot" target="_blank">Esqueleto Completo do Iron</a></li></ul></div>
-  </div>
-</div>
-    <img src="assets/introducao.jpg" alt="Introdução IA">
-    <div class="accordion-content"><p>A Inteligência Artificial é uma tecnologia que permite que máquinas aprendam e realizem tarefas de forma semelhante aos humanos. No nosso projeto, estudamos como modelos modernos funcionam e como podem ser aplicados na vida real.</p></div>
-  </div>
-
-  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
-    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="assets/tipos-ia.jpg" alt="Tipos de IA">
-    <div class="accordion-content"><p>No nosso trabalho distinguimos três tipos principais: IA estreita, capaz de realizar uma tarefa específica; IA geral, que teria capacidade semelhante à humana; e IA superinteligente, que ultrapassaria o intelecto humano.</p></div>
-  </div>
-
-  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
-    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="assets/exemplos.jpg" alt="Exemplos IA">
-    <div class="accordion-content"><p>Investigámos aplicações práticas como diagnósticos médicos assistidos por IA, sistemas de recomendação (Netflix, Spotify), automação industrial e algoritmos de previsão meteorológica.</p></div>
-  </div>
-
-  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
-    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="assets/projetos.jpg" alt="Projetos IA">
-    <div class="accordion-content"><p>No nosso projeto criámos pequenos modelos de machine learning, incluindo um classificador de imagens simples e um chatbot básico. Em breve vamos disponibilizar tutoriais completos e documentação.</p></div>
+  <div class="accordion-item">
+    <img src="assets/projeto.jpg" alt="Projetos de IA">
+    <div class="accordion-content">
+      <h2>Projetos de IA</h2>
+      <p>Aqui estão alguns exemplos de projetos interessantes de IA:</p>
+      <ul>
+        <li><a href="https://tek.sapo.pt/multimedia/artigos/iron-e-mesmo-um-robot-humanoide-ou-um-humano-disfarcado-xpeng-tira-a-limpo-as-duvidas" target="_blank">Iron - Robot Humanoide</a></li>
+        <li><a href="https://tek.sapo.pt/multimedia/artigos/xpeng-divulga-esqueleto-completo-do-iron-para-acabar-de-vez-com-as-duvidas-sobre-o-seu-robot" target="_blank">Esqueleto Completo do Iron</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 <footer>© 2025 — IA Explore</footer>
-<script src="script.js"></script>
+<script>
+const items = document.querySelectorAll('.accordion-item');
+items.forEach(item => {
+  item.addEventListener('click', () => {
+    const content = item.querySelector('.accordion-content');
+    if(content.style.display === 'block') {
+      content.style.display = 'none';
+    } else {
+      content.style.display = 'block';
+    }
+  });
+});
+</script>
 </body>
 </html>
