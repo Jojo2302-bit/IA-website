@@ -53,7 +53,8 @@ header {
 }
 .accordion-item.expanded {
   position: fixed;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%) scale(1.15);
   max-width: 90%;
   z-index: 2000;
@@ -113,63 +114,66 @@ footer {
 <body>
 <header>IA Explore</header>
 <div class="accordion">
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="https://setemargens.com/wp-content/uploads/2024/03/Transumanismo.jpg" alt="Introdução IA">
+    <img src="https://setemargens.com/wp-content/uploads/2024/03/Transumanismo.jpg" alt="O que é a IA">
     <div class="accordion-content">
       <h2>O que é a inteligência artificial?</h2>
-      <p>Capacidade de uma máquina para reproduzir competências semelhantes às humanas, como raciocínio, aprendizagem, planeamento e criatividade. A IA permite que sistemas percebam o ambiente, processem informações e resolvam problemas autonomamente.</p>
+      <p>Capacidade de uma máquina para reproduzir competências semelhantes às humanas como é o caso do raciocínio, a aprendizagem, o planeamento e a criatividade.
+A IA permite que os sistemas técnicos percebam o ambiente que os rodeia, lidem com o que percebem e resolvam problemas, agindo no sentido de alcançar um objetivo específico. O computador recebe dados (já preparados ou recolhidos através dos seus próprios sensores), processa-os e responde.</p>
     </div>
   </div>
 
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
     <img src="https://fcamara.com/blog/wp-content/uploads/2024/11/tipos-de-inteligencia-artificial-FCamara-1.jpg" alt="Saúde">
     <div class="accordion-content">
       <h2>Saúde</h2>
-      <p>IA ajuda a analisar grandes quantidades de dados de saúde e encontrar padrões para novas descobertas médicas e melhorias de diagnóstico. Ex.: KConnect, projeto UE que auxilia na pesquisa multilingue de informação médica.</p>
+      <p>Os investigadores estão a pesquisar como podem usar IA para analisar grandes quantidades de dados de saúde e encontrar padrões que podem levar a novas descobertas em medicina e a outras maneiras de melhorar o diagnóstico individual. 
+Um exemplo é o KConnect, um projeto cofinanciado pela UE e que se encontra a desenvolver serviços de pesquisa e texto multilingues para auxiliar as pessoas a encontrar as informações médicas disponíveis e mais relevantes.</p>
     </div>
   </div>
 
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
     <img src="https://media.meer.com/attachments/25d8a935d301f7d41f79b8d9d7b0ee5966ad1b28/store/fill/1090/613/56962ce3591479637d1951303dfa30ee2c006c04eabc94ce210056705240/Robo-resolve-problemas-matematicos.jpg" alt="Carros">
     <div class="accordion-content">
       <h2>Carros</h2>
-      <p>Veículos usam funções de segurança alimentadas por IA. Ex.: VI-DAS, projeto UE com sensores automatizados que detetam acidentes potenciais. Navegação é parcialmente alimentada por IA.</p>
+      <p>Enquanto os veículos autónomos ainda não são uma realidade, os carros já usam funções de segurança alimentadas por IA. A UE ajudou, por exemplo, a financiar o VI-DAS - um projeto relativo a sensores automatizados que detetam situações perigosas potenciais e acidentes. A navegação é em grande parte alimentada por IA.</p>
     </div>
   </div>
 
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
     <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Alimentação e Agricultura">
     <div class="accordion-content">
       <h2>Alimentação e Agricultura</h2>
-      <p>IA ajuda a criar sistemas alimentares sustentáveis, garantindo alimentos saudáveis, minimizando fertilizantes e pesticidas, aumentando produtividade e reduzindo impacto ambiental.</p>
+      <p>A Inteligência artificial pode ser utilizada na criação de um sistema alimentar sustentável na UE pois permite garantir alimentos mais saudáveis, minimizando a utilização de fertilizantes, pesticidas e irrigação, assim como contribuir para a produtividade e a redução do impacto ambiental. Os robôs poderiam remover ervas daninhas, por exemplo, através da diminuição do uso de herbicidas.</p>
     </div>
   </div>
 
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
     <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Administração Pública e Serviços">
     <div class="accordion-content">
       <h2>Administração Pública e Serviços</h2>
-      <p>IA utiliza grandes volumes de dados para alertar antecipadamente sobre catástrofes e ajudar na preparação e mitigação das consequências.</p>
+      <p>Ao utilizar uma vasta gama de dados e de reconhecimento de padrões, a IA poderá alertar antecipadamente para as catástrofes naturais e permitir uma preparação e atenuação eficientes das consequências.</p>
     </div>
   </div>
 
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
     <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Projetos de IA">
     <div class="accordion-content">
       <h2>Projetos de IA</h2>
-      <p>Exemplos de projetos de IA:</p>
       <ul>
         <li><a href="https://tek.sapo.pt/multimedia/artigos/iron-e-mesmo-um-robot-humanoide-ou-um-humano-disfarcado-xpeng-tira-a-limpo-as-duvidas" target="_blank">Iron - Robot Humanoide</a></li>
         <li><a href="https://tek.sapo.pt/multimedia/artigos/xpeng-divulga-esqueleto-completo-do-iron-para-acabar-de-vez-com-as-duvidas-sobre-o-seu-robot" target="_blank">Esqueleto Completo do Iron</a></li>
       </ul>
     </div>
   </div>
+
 </div>
 <footer>© 2025 — IA Explore</footer>
 <script>
