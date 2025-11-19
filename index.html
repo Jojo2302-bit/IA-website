@@ -4,184 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IA Explore - Dark Mode</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-  font-family: 'Arial', sans-serif;
-  background: #0f0f0f;
-  color: #c084fc;
-  overflow-x: hidden;
-  transition: background 0.5s;
-}
-  header {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    background: linear-gradient(135deg, #1b1b1b, #5a1ea8);
-    color: #e6ccff;
-    padding: 15px;
-    text-align: center;
-    font-size: 1.6rem;
-    z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-  }
-
-  .accordion {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin: 120px auto 40px;
-    max-width: 1800px;
-  }
-
-  .accordion-item {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 15px;
-    flex: 1 1 350px;
-    max-width: 420px;
-    transition: all 0.5s ease;
-    background: #1b1b1b;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.8);
-  }
-
-  .accordion-item img {
-  width: 110%;
-  height: auto;
-  display: block;
-  border-radius: 15px;
-  transition: transform 0.5s ease;
-}
-
-  .accordion-item.expanded {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1.15);
-    max-width: 90%;
-    z-index: 2000;
-  }
-
-  .accordion-content {
-    background: rgba(20,20,20,0.95);
-    color: #e0c8ff;
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 20px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.5s ease;
-    font-size: 1.15rem;
-    line-height: 1.6;
-    border-radius: 0 0 15px 15px;
-  }
-
-  .accordion-content.show {
-    max-height: 85vh;
-    padding: 25px;
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.8);
-    transition: all 0.4s ease;
-  }
-
-  .close-btn {
-    position: absolute;
-    top: 12px;
-    right: 18px;
-    font-size: 2.3rem;
-    cursor: pointer;
-    opacity: 0;
-    transition: 0.3s;
-    z-index: 3000;
-    color: #fff;
-    text-shadow: 0 0 10px #a455ff;
-  }
-
-  .accordion-item.expanded .close-btn {
-    opacity: 1;
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    background: #111;
-    color: #caa7ff;
-    margin-top: 40px;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.7);
-  }
-
-  @media(max-width:768px){
-    .accordion { flex-direction: column; align-items: center; }
-    .accordion-item { max-width: 95%; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <header>IA Explore</header>
-
 <div class="accordion">
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+  <!-- 1: Introdução à IA -->
+  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="https://setemargens.com/wp-content/uploads/2024/03/Transumanismo.jpg" alt="Introdução IA">
-    <div class="accordion-content"><p>A Inteligência Artificial (IA) é a área da ciência da computação que cria sistemas capazes de aprender, pensar e resolver problemas de forma autónoma.</p></div>
+    <img src="assets/introducao.jpg" alt="Introdução à IA">
+    <div class="accordion-content"><h2>O que é a inteligência artificial?</h2><p>Capacidade de uma máquina para reproduzir competências semelhantes às humanas, como o raciocínio, a aprendizagem, o planeamento e a criatividade. A IA permite que sistemas técnicos percebam o ambiente, interpretem a informação e resolvam problemas com o objetivo de atingir determinadas metas. O computador recebe dados (preparados ou recolhidos por sensores), processa-os e responde de forma autónoma.</p></div>
   </div>
 
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+  <!-- 2: Tipos de IA -->
+  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="https://fcamara.com/blog/wp-content/uploads/2024/11/tipos-de-inteligencia-artificial-FCamara-1.jpg" alt="Tipos de IA">
-    <div class="accordion-content"><p>Machine Learning, Redes Neuronais, Processamento de Linguagem Natural e Visão Computacional são alguns tipos de IA.</p></div>
+    <img src="assets/tipos-ia.jpg" alt="Tipos de IA">
+    <div class="accordion-content"><h2>Saúde</h2><p>Os investigadores estão a explorar como usar IA para analisar grandes quantidades de dados de saúde e identificar padrões que possam conduzir a novas descobertas médicas e a melhorias no diagnóstico individual. Um exemplo é o KConnect, um projeto cofinanciado pela UE que desenvolve serviços de pesquisa e processamento de texto multilingue para ajudar pessoas a encontrar informações médicas relevantes e fiáveis.</p></div>
   </div>
 
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+  <!-- 3: Machine Learning -->
+  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="https://media.meer.com/attachments/25d8a935d301f7d41f79b8d9d7b0ee5966ad1b28/store/fill/1090/613/56962ce3591479637d1951303dfa30ee2c006c04eabc94ce210056705240/Robo-resolve-problemas-matematicos.jpg" alt="Exemplos IA">
-    <div class="accordion-content"><p>Assistentes virtuais, carros autónomos, reconhecimento de imagens, tradução automática e sistemas de recomendação são exemplos de IA aplicada.</p></div>
+    <img src="assets/machine-learning.jpg" alt="Machine Learning">
+    <div class="accordion-content"><h2>Carros</h2><p>Enquanto os veículos autónomos ainda não são uma realidade, os carros já utilizam funções de segurança alimentadas por IA. A UE ajudou, por exemplo, a financiar o VI-DAS, um projeto com sensores automatizados que detetam situações perigosas potenciais e acidentes. A navegação é em grande parte suportada por IA.</p></div>
   </div>
 
-  <div class="accordion-item" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+  <!-- 4: Exemplos de IA no dia a dia -->
+  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
     <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
-    <img src="https://i0.wp.com/marketingessencial.com.br/wp-content/uploads/2023/10/aprenda-inteligencia-artificial-na-pratica.jpg?fit=600%2C314&ssl=1" alt="Projetos IA">
-    <div class="accordion-content"><p>Explora projetos de IA e aprende a criar os teus próprios modelos. Em breve teremos tutoriais completos!</p></div>
+    <img src="assets/exemplos.jpg" alt="Exemplos no dia a dia">
+    <div class="accordion-content"><h2>Alimentação e Agricultura</h2><p>A Inteligência Artificial pode ser utilizada na criação de um sistema alimentar sustentável na UE, permitindo garantir alimentos mais saudáveis e minimizando a utilização de fertilizantes, pesticidas e irrigação. Além disso, contribui para a produtividade e a redução do impacto ambiental. Robôs podem, por exemplo, remover ervas daninhas, diminuindo o uso de herbicidas.</p></div>
+  </div>
+
+  <!-- 5: IA na Saúde -->
+  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="assets/ia-saude.jpg" alt="IA na Saúde">
+    <div class="accordion-content"><h2>Administração Pública e Serviços</h2><p>Ao utilizar uma vasta gama de dados e de reconhecimento de padrões, a IA poderá alertar antecipadamente para catástrofes naturais e permitir uma preparação e atenuação eficientes das consequências.</p></div>
+  </div>
+
+  <!-- 6: IA na Educação -->
+  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="assets/ia-educacao.jpg" alt="IA na Educação">
+    <div class="accordion-content"><p>Estudámos ferramentas que personalizam o ensino, corrigem automaticamente exercícios e apoiam professores.</p></div>
+  </div>
+
+  
+    <img src="assets/projeto.jpg" alt="O nosso projeto">
+    <div class="accordion-content"><h2>Projetos de IA</h2><p>Aqui estão alguns exemplos de projetos interessantes de IA:</p><ul><li><a href="https://tek.sapo.pt/multimedia/artigos/iron-e-mesmo-um-robot-humanoide-ou-um-humano-disfarcado-xpeng-tira-a-limpo-as-duvidas" target="_blank">Iron - Robot Humanoide</a></li><li><a href="https://tek.sapo.pt/multimedia/artigos/xpeng-divulga-esqueleto-completo-do-iron-para-acabar-de-vez-com-as-duvidas-sobre-o-seu-robot" target="_blank">Esqueleto Completo do Iron</a></li></ul></div>
   </div>
 </div>
+    <img src="assets/introducao.jpg" alt="Introdução IA">
+    <div class="accordion-content"><p>A Inteligência Artificial é uma tecnologia que permite que máquinas aprendam e realizem tarefas de forma semelhante aos humanos. No nosso projeto, estudamos como modelos modernos funcionam e como podem ser aplicados na vida real.</p></div>
+  </div>
 
+  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="assets/tipos-ia.jpg" alt="Tipos de IA">
+    <div class="accordion-content"><p>No nosso trabalho distinguimos três tipos principais: IA estreita, capaz de realizar uma tarefa específica; IA geral, que teria capacidade semelhante à humana; e IA superinteligente, que ultrapassaria o intelecto humano.</p></div>
+  </div>
+
+  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="assets/exemplos.jpg" alt="Exemplos IA">
+    <div class="accordion-content"><p>Investigámos aplicações práticas como diagnósticos médicos assistidos por IA, sistemas de recomendação (Netflix, Spotify), automação industrial e algoritmos de previsão meteorológica.</p></div>
+  </div>
+
+  <div class="accordion-item" role="button" tabindex="0" onclick="toggleItem(this)" onkeypress="if(event.key==='Enter'||event.key===' '){toggleItem(this)}">
+    <div class="close-btn" onclick="closeItem(event, this.parentElement)">×</div>
+    <img src="assets/projetos.jpg" alt="Projetos IA">
+    <div class="accordion-content"><p>No nosso projeto criámos pequenos modelos de machine learning, incluindo um classificador de imagens simples e um chatbot básico. Em breve vamos disponibilizar tutoriais completos e documentação.</p></div>
+  </div>
+</div>
 <footer>© 2025 — IA Explore</footer>
-
-<script>
-  const items = document.querySelectorAll('.accordion-item');
-
-  function toggleItem(item){
-    const isExpanded = item.classList.contains('expanded');
-
-    if(isExpanded){
-      closeItem(null, item);
-    } else {
-      items.forEach(i => { if(i !== item) i.classList.add('hidden'); });
-      item.classList.add('expanded');
-      item.querySelector('.accordion-content').classList.add('show');
-      document.body.style.overflow = "hidden";
-      document.body.style.background = "linear-gradient(135deg, #0c0c0c, #3a1366)";
-    }
-  }
-
-  function closeItem(event, item){
-    if(event) event.stopPropagation();
-    item.classList.remove('expanded');
-    item.querySelector('.accordion-content').classList.remove('show');
-    items.forEach(i => i.classList.remove('hidden'));
-    document.body.style.overflow = "auto";
-    document.body.style.background = "linear-gradient(135deg, #111, #2a1540)";
-  }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
